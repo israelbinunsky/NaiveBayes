@@ -1,0 +1,27 @@
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,id,age,income,student,credit_rating,Buy_Computer,,Buy_Computer,,,age,Buy_Computer,,,,student,Buy_Computer,
+,,,,,,2,youth,high,no,excellent,no,,no,5/14,,youth,no,3/5,,,yes,no,1/5
+,,,,,,6,senior,low,yes,excellent,no,,yes,9/14,,senior,no,2/5,,,no,no,4/5
+,,,,,,14,senior,medium,no,excellent,no,,,,,middle_age,no,0/5 -> 1/6,,,yes,yes,2/3
+,,,,,,1,youth,high,no,fair,no,,,,,youth,yes,2/9,,,no,yes,1/3
+,,,,,,8,youth,medium,no,fair,no,,,,,senior,yes,1/3,,,,,
+,,,,,,7,middle_age,low,yes,excellent,yes,,,,,middle_age,yes,4/9,,,,,
+,,,,,,11,youth,medium,yes,excellent,yes,,,,,,,,,,,,
+,,,,,,12,middle_age,medium,no,excellent,yes,,,,,income,Buy_Computer,,,,credit_rating,Buy_Computer,
+,,,,,,3,middle_age,high,no,fair,yes,,,,,high,no,2/5,,,excellent,no,3/5
+,,,,,,4,senior,medium,no,fair,yes,,,,,medium,no,2/5,,,fair,no,2/5
+,,,,,,5,senior,low,yes,fair,yes,,,,,low,no,1/5,,,excellent,yes,1/3
+,,,,,,9,youth,low,yes,fair,yes,,,,,high,yes,2/9,,,fair,yes,2/3
+,,,,,,10,senior,medium,yes,fair,yes,,,,,medium,yes,4/9,,,,,
+,,,,,,13,middle_age,high,yes,fair,yes,,,,,low,yes,1/3,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,age,income,student,credit_rating,,Buy_Computer,,,,,
+,,,,,,,middle_age,low,yes,fair,???,,middle_age | no,low|no,yes|no,fair |no,,no,,,,,
+,,,,,,,senior,medium,yes,fair,???,,0,1/5,1/5,2/5,,5/14,0,,,,
+,,,,,,,,,,,,,1/6,1/5,1/5,2/5,,5/14,0.0009521428571,,,,
+,,,,,,,,,,,,,middle_age | yes,low|yes,yes|yes,fair|yes,,yes,,,,,
+,,,,,,,,,,,,,4/9,1/3,2/3,2/3,,9/14,0.042,,,,
