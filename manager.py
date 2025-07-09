@@ -13,7 +13,7 @@ class Manager:
         c = input('category: ')
         col = c.replace(' ', '_')
         r = input('sort: ')
-        row = r.replace(' ', '_')
+        row = int(r)
         l = list()
         l.append(col)
         l.append(row)
@@ -24,17 +24,29 @@ class Manager:
         result = self.s.statistics(l[0],l[1])
         more = input('more details? ')
         if more == 'yes':
-            l = self.inputs()
-            r2 = self.s.statistics(l[0],l[1])
-            result = {"yes": result["yes"] * r2["yes"], "no": result["no"] * r2["no"]}
-        self.printing(result)
+            r2 = self.main()
+            for p in self.s.d.check_params_list:
+                result[p] = result[p] * r2[p]
+            # result = {"yes": result["yes"] * r2["yes"], "no": result["no"] * r2["no"]}
+        return result
 
 
     def printing(self, result):
-        if result["yes"] > result["no"]:
-            print("result: yes.")
-        elif result["no"] > result["yes"]:
-            print("result: no.")
-        else:
-            print("result: equal.")
-        print(f"yes: {result["yes"]}. no: {result["no"]}.")
+        # if result["yes"] > result["no"]:
+        #     print("result: yes.")
+        # elif result["no"] > result["yes"]:
+        #     print("result: no.")
+        # else:
+        #     print("result: equal.")
+        # print(f"yes: {result["yes"]}. no: {result["no"]}.")
+
+        mx = 0
+        mx_key = ''
+        for i in result.keys():
+            if result[i] > mx:
+                mx = result[i]
+                mx_key = i
+        print(f"the max is: '{mx_key}'. {mx} % of all '{mx_key}' in '{self.s.d.check_param}'")
+        print('all parameters:')
+        for p in self.s.d.check_params_list:
+            print(f"{p}: {result[p]} %")
