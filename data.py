@@ -1,8 +1,8 @@
 import pandas as pd
 class Data:
-    def __init__(self,path , param, skip_rows =0):
-        self.check_param = param
+    def __init__(self,path,param, skip_rows =0):
 
+        self.check_param = param
         table = pd.read_csv(path, skiprows=skip_rows)
         self.table = table.loc[:, ~table.columns.str.contains('^Unnamed')]
         cms = table.columns.tolist()

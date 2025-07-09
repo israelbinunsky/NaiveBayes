@@ -2,7 +2,6 @@ from stats import Stats
 class Manager:
     def __init__(self,data):
         self.s = Stats(data)
-
     @staticmethod
     def param():
         param = input('The parameter you want to check: ')
