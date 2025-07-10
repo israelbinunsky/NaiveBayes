@@ -21,7 +21,7 @@ class Stats:
                 self.d.nums[p] += 1
                 result[p] = a
         if not is_exist:
-            print("not exist.")
+            return None
         return result
 
 
@@ -49,16 +49,19 @@ class Stats:
         # return l
 
     def statistics(self,col,row):
-        l = self.check(col,row)
-        results = dict()
-        for i in l:
-            results[i] = l[i] / self.d.nums[i]
+        dict_results = self.check(col,row)
+        if not dict_results:
+            return None
+        final_dict_results = dict()
+        for i in dict_results:
+            final_dict_results[i] = dict_results[i] / self.d.nums[i]
 
+        return final_dict_results
         # y = l["y"]
         # n = l["n"]
         # yes_result = y / self.d.yes_num
         # no_result = n / self.d.no_num
         # result = {"yes": yes_result, "no": no_result}
 
-        return results
+
 

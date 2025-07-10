@@ -5,7 +5,6 @@ class Manager:
     @staticmethod
     def param():
         param = input('The parameter you want to check: ')
-        # param = p.replace(' ', '_')
         return param
 
     def inputs(self):
@@ -21,11 +20,16 @@ class Manager:
     def main(self):
         l = self.inputs()
         result = self.s.statistics(l[0],l[1])
+        if not result:
+            print("not exist.")
         more = input('more details? ')
         if more == 'yes':
-            r2 = self.main()
-            for p in self.s.d.check_params_list:
-                result[p] = result[p] * r2[p]
+            result2 = self.main()
+            if result and result2:
+                for p in self.s.d.check_params_list:
+                    result[p] = result[p] * result2[p]
+            elif result2:
+                result = result2
             # result = {"yes": result["yes"] * r2["yes"], "no": result["no"] * r2["no"]}
         return result
 
@@ -41,11 +45,14 @@ class Manager:
 
         mx = 0
         mx_key = ''
-        for i in result.keys():
-            if result[i] > mx:
-                mx = result[i]
-                mx_key = i
-        print(f"the max is: '{mx_key}'. {mx} % of all '{mx_key}' in '{self.s.d.check_param}'")
-        print('all parameters:')
-        for p in self.s.d.check_params_list:
-            print(f"{p}: {result[p]} %")
+        if result:
+            for i in result.keys():
+                if result[i] > mx:
+                    mx = result[i]
+                    mx_key = i
+            print(f"the max is: '{mx_key}'. {mx} % of all '{mx_key}' in '{self.s.d.check_param}'")
+            print('all parameters:')
+            for p in self.s.d.check_params_list:
+                print(f"{p}: {result[p]} %")
+        else:
+            print('no valid parameter to check.')
