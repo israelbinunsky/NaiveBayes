@@ -1,37 +1,15 @@
 import pandas as pd
 class Data:
-    def __init__(self,path,param, skip_rows =0):
+    def __init__(self,path, skip_rows =0):
 
-        self.check_param = param
+
 
         table = pd.read_csv(path, skiprows=skip_rows)
         self.table = table.loc[:, ~table.columns.str.contains('^Unnamed')]
-        self.is_check_param_exist()
         cms = self.table.columns.tolist()
-        self.cms = [c for c in cms if c != 'id' and c != self.check_param and not c.startswith('Unnamed')]
+        self.cms = [c for c in cms if c != 'id' and c and not c.startswith('Unnamed')]
         print(self.cms)
 
-
-        self.check_params_list = list(self.table[self.check_param].unique())
-
-        self.nums = dict()
-        self.tables = dict()
-        self.dicts = dict()
-
-
-        for p in self.check_params_list:
-            self.nums[p] = self.table[self.check_param].value_counts().get(p, 0)
-            self.tables[p] = table[table[self.check_param] == p]
-            self.dicts[p] = dict()
-
-            for column in self.cms:
-                param_by_col = self.tables[p].groupby(column).size()
-                a = param_by_col.to_dict()
-                self.dicts[p][column] = a
-
-    def is_check_param_exist(self):
-        if self.check_param not in self.table.columns:
-            raise Exception("invalid parameter.")
 
         # self.yes_num = self.table[self.check_param].value_counts().get('yes', 0)
         # self.no_num = self.table[self.check_param].value_counts().get('no', 0)

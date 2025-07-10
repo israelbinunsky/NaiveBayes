@@ -1,7 +1,9 @@
 from manager import Manager
 from data import Data
-param = Manager.param()
-data = Data("phishing.csv", param)
-manager = Manager(data)
+from param import Param
+
+data = Data("phishing.csv")
+param = Param(data)
+manager = Manager(param)
 result = manager.main()
 manager.printing(result)

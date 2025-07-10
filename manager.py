@@ -1,11 +1,7 @@
 from stats import Stats
 class Manager:
-    def __init__(self,data):
-        self.s = Stats(data)
-    @staticmethod
-    def param():
-        param = input('The parameter you want to check: ')
-        return param
+    def __init__(self,param):
+        self.s = Stats(param)
 
     def inputs(self):
         c = input('category: ')
@@ -26,7 +22,7 @@ class Manager:
         if more == 'yes':
             result2 = self.main()
             if result and result2:
-                for p in self.s.d.check_params_list:
+                for p in self.s.p.check_params_list:
                     result[p] = result[p] * result2[p]
             elif result2:
                 result = result2
@@ -50,9 +46,10 @@ class Manager:
                 if result[i] > mx:
                     mx = result[i]
                     mx_key = i
-            print(f"the max is: '{mx_key}'. {mx} % of all '{mx_key}' in '{self.s.d.check_param}'")
-            print('all parameters:')
-            for p in self.s.d.check_params_list:
+            print(f"The highest percentage is: '{mx_key}'")
+            print(f"{mx} % of all '{mx_key}' in '{self.s.p.check_param}' parameter are matching your settings.")
+            print('all options:')
+            for p in self.s.p.check_params_list:
                 print(f"{p}: {result[p]} %")
         else:
             print('no valid parameter to check.')

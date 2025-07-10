@@ -1,6 +1,6 @@
 class Stats:
-    def __init__(self, data):
-        self.d = data
+    def __init__(self, param):
+        self.p = param
 
     def add_one(self, dict):
         for col in dict:
@@ -10,24 +10,19 @@ class Stats:
     def check(self,col,row):
         result = dict()
         is_exist = False
-        for p in self.d.check_params_list:
-            if col in self.d.dicts[p] and row in self.d.dicts[p][col]:
-                num = self.d.dicts[p][col][row]
+        for p in self.p.check_params_list:
+            if col in self.p.dicts[p] and row in self.p.dicts[p][col]:
+                num = self.p.dicts[p][col][row]
                 result[p] = num
                 is_exist = True
             else:
                 a = 1
-                self.add_one(self.d.dicts[p])
-                self.d.nums[p] += 1
+                self.add_one(self.p.dicts[p])
+                self.p.nums[p] += 1
                 result[p] = a
         if not is_exist:
             return None
         return result
-
-
-
-
-
 
         # y = 0
         # n = 0
@@ -54,7 +49,7 @@ class Stats:
             return None
         final_dict_results = dict()
         for i in dict_results:
-            final_dict_results[i] = dict_results[i] / self.d.nums[i]
+            final_dict_results[i] = dict_results[i] / self.p.nums[i]
 
         return final_dict_results
         # y = l["y"]
