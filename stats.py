@@ -2,12 +2,12 @@ class Stats:
     def __init__(self, param):
         self.p = param
 
-    def add_one(self, dict):
+    def add1_to_all(self, dict):
         for col in dict:
             for row in dict[col]:
                 dict[col][row] += 1
 
-    def check(self,col,row):
+    def check_numerator(self,col,row):
         result = dict()
         is_exist = False
         for p in self.p.check_params_list:
@@ -17,7 +17,7 @@ class Stats:
                 is_exist = True
             else:
                 a = 1
-                self.add_one(self.p.dicts[p])
+                self.add1_to_all(self.p.dicts[p])
                 self.p.nums[p] += 1
                 result[p] = a
         if not is_exist:
@@ -43,8 +43,8 @@ class Stats:
         # l["n"] = n
         # return l
 
-    def statistics(self,col,row):
-        dict_results = self.check(col,row)
+    def calculation(self,col,row):
+        dict_results = self.check_numerator(col,row)
         if not dict_results:
             return None
         final_dict_results = dict()

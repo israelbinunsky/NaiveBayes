@@ -15,8 +15,8 @@ class Param:
 
             for column in self.d.cms:
                 param_by_col = self.tables[p].groupby(column).size()
-                a = param_by_col.to_dict()
-                self.dicts[p][column] = a
+                d = param_by_col.to_dict()
+                self.dicts[p][column] = d
 
     def input_param(self):
         check_param = input('The parameter you want to check: ')

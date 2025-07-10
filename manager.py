@@ -15,7 +15,7 @@ class Manager:
 
     def main(self):
         l = self.inputs()
-        result = self.s.statistics(l[0],l[1])
+        result = self.s.calculation(l[0],l[1])
         if not result:
             print("not exist.")
         more = input('more details? ')
