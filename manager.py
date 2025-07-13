@@ -27,19 +27,10 @@ class Manager:
                     result[p] = result[p] * result2[p]
             elif result2:
                 result = result2
-            # result = {"yes": result["yes"] * r2["yes"], "no": result["no"] * r2["no"]}
         return result
 
 
     def printing(self, result):
-        # if result["yes"] > result["no"]:
-        #     print("result: yes.")
-        # elif result["no"] > result["yes"]:
-        #     print("result: no.")
-        # else:
-        #     print("result: equal.")
-        # print(f"yes: {result["yes"]}. no: {result["no"]}.")
-
         mx = 0
         mx_key = ''
         if result:
@@ -65,5 +56,4 @@ class Manager:
         d['max percentage'] = float(mx)
         for p in self.s.p.check_params_list:
             d[str(p)] = float(result[p])
-
         return d

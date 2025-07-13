@@ -24,25 +24,6 @@ class Stats:
             return None
         return result
 
-        # y = 0
-        # n = 0
-        # if row in self.d.yes_dict[col] and row in self.d.no_dict[col]:
-        #     y = self.d.yes_dict[col][row]
-        #     n = self.d.no_dict[col][row]
-        # elif row in self.d.yes_dict[col] and row not in self.d.no_dict[col]:
-        #     y = self.d.yes_dict[col][row]
-        #     n = 1
-        #     self.add_one(self.d.no_dict)
-        #     self.d.no_num += 1
-        # elif row not in self.d.yes_dict[col] and row in self.d.no_dict[col]:
-        #     y = 1
-        #     n = self.d.no_dict[col][row]
-        #     self.add_one(self.d.yes_dict)
-        #     self.d.yes_num += 1
-        # l["y"] = y
-        # l["n"] = n
-        # return l
-
     def calculation(self,col,row):
         dict_results = self.check_numerator(col,row)
         if not dict_results:
@@ -52,11 +33,6 @@ class Stats:
             final_dict_results[i] = dict_results[i] / self.p.nums[i]
 
         return final_dict_results
-        # y = l["y"]
-        # n = l["n"]
-        # yes_result = y / self.d.yes_num
-        # no_result = n / self.d.no_num
-        # result = {"yes": yes_result, "no": no_result}
 
 
 

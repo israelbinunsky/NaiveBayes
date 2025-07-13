@@ -9,7 +9,7 @@ param = Param(data)
 manager = Manager(param)
 # l = manager.inputs()
 # result = manager.main(l[0],l[1])
-# json = manager.printing(result)
+# manager.printing(result)
 
 app = FastAPI()
 @app.get('/{col}/{row}')
