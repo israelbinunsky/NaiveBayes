@@ -20,7 +20,8 @@ class Manager:
             print("not exist.")
         more = input('more details? ')
         if more == 'yes':
-            result2 = self.main()
+            l = self.inputs()
+            result2 = self.main(l[0], l[1])
             if result and result2:
                 for p in self.s.p.check_params_list:
                     result[p] = result[p] * result2[p]
