@@ -14,9 +14,8 @@ class Manager:
         l.append(row)
         return l
 
-    def main(self):
-        l = self.inputs()
-        result = self.s.calculation(l[0],l[1])
+    def main(self,col, row):
+        result = self.s.calculation(col,row)
         if not result:
             print("not exist.")
         more = input('more details? ')
