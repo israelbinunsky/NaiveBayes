@@ -5,5 +5,21 @@ class Data:
         self.table = table.loc[:, ~table.columns.str.contains('^Unnamed')]
         cms = self.table.columns.tolist()
         self.cms = [c for c in cms if c != 'id' and c and not c.startswith('Unnamed')]
-        print(self.cms)
+        self.show_cms()
+
+    def show_cms(self):
+        print('________________________________________________')
+        print('columns:')
+        cnt = 0
+        str = ''
+        for c in self.cms:
+            cnt += 1
+            if cnt % 4 == 0:
+                str += c
+                print(str)
+                str = ''
+            else:
+                str += f'{c}  |  '
+        print('________________________________________________')
+
 

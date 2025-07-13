@@ -1,4 +1,4 @@
-
+import log_project
 class Param:
     def __init__(self, data,):
         self.d = data
@@ -24,5 +24,6 @@ class Param:
         return check_param
 
     def is_check_param_exist(self, param):
-        if param not in self.d.table.columns:
+        if param not in self.d.cms:
+            log_project.log(f"invalid parameter entered.\n")
             raise Exception("invalid parameter.")

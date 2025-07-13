@@ -1,0 +1,5 @@
+'class' parameter: column not in the table.
+'class' parameter: calculated successfully.
+'class' parameter: column not in the table.
+'class' parameter: calculated successfully.
+'class' parameter: calculated successfully.
