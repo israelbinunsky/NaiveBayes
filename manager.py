@@ -1,4 +1,5 @@
 from stats import Stats
+
 class Manager:
     def __init__(self,param):
         self.s = Stats(param)
@@ -46,10 +47,23 @@ class Manager:
                 if result[i] > mx:
                     mx = result[i]
                     mx_key = i
-            print(f"The highest percentage is: '{mx_key}'")
-            print(f"{mx} % of all '{mx_key}' in '{self.s.p.check_param}' parameter are matching your settings.")
-            print('all options:')
+
+            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.s.p.check_param}' parameter are matching your settings.\nall options:"
             for p in self.s.p.check_params_list:
-                print(f"{p}: {result[p]} %")
+                txt += f"\n{p}: {result[p]} %"
+            print(txt)
+            d = self.create_json_format(result,mx,mx_key)
+            return d
         else:
             print('no valid parameter to check.')
+
+
+    def create_json_format(self,result, mx, mx_key):
+        d = dict()
+
+        d['max'] = str(mx_key)
+        d['max percentage'] = float(mx)
+        for p in self.s.p.check_params_list:
+            d[str(p)] = float(result[p])
+
+        return d

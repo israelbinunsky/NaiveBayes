@@ -2,7 +2,7 @@ class Stats:
     def __init__(self, param):
         self.p = param
 
-    def add1_to_all(self, dict):
+    def add_one_to_all(self, dict):
         for col in dict:
             for row in dict[col]:
                 dict[col][row] += 1
@@ -17,7 +17,7 @@ class Stats:
                 is_exist = True
             else:
                 a = 1
-                self.add1_to_all(self.p.dicts[p])
+                self.add_one_to_all(self.p.dicts[p])
                 self.p.nums[p] += 1
                 result[p] = a
         if not is_exist:
