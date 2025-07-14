@@ -6,3 +6,4 @@
 'class' parameter: calculated successfully.
 'class' parameter: calculated successfully.
 'class' parameter: calculated successfully.
+'class' parameter: calculated successfully.
