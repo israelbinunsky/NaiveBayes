@@ -29,6 +29,12 @@ class Manager:
                 result = result2
         return result
 
+    def main_for_server(self,col, row):
+        result = self.s.calculation(col,row)
+        if not result:
+            print("not exist.")
+        return result
+
 
     def printing(self, result):
         mx = 0
