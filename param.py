@@ -1,8 +1,9 @@
 import log_project
 class Param:
-    def __init__(self, data,):
+    def __init__(self, data,check_param):
         self.d = data
-        self.check_param = self.input_param()
+        self.is_check_param_exist(check_param)
+        self.check_param = check_param
         self.check_params_list = list(self.d.table[self.check_param].unique())
 
         self.nums = dict()
@@ -17,11 +18,6 @@ class Param:
                 param_by_col = self.tables[p].groupby(column).size()
                 d = param_by_col.to_dict()
                 self.dicts[p][column] = d
-
-    def input_param(self):
-        check_param = input('The parameter you want to check: ')
-        self.is_check_param_exist(check_param)
-        return check_param
 
     def is_check_param_exist(self, param):
         if param not in self.d.cms:

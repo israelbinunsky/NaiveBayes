@@ -5,10 +5,10 @@ class Manager:
         self.s = Stats(param)
 
     def inputs(self):
-        c = input('category: ')
-        col = c.replace(' ', '_')
-        r = input('sort: ')
-        row = int(r)
+        col = input('category: ')
+        row = input('sort: ')
+        if row.isdigit():
+            row = int(row)
         l = list()
         l.append(col)
         l.append(row)
