@@ -29,3 +29,6 @@
 'Buy_Computer' parameter: calculated successfully.
 'Buy_Computer' parameter: calculated successfully.
 'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.

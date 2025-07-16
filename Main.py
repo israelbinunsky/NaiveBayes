@@ -24,9 +24,9 @@ async def root(par: str, col: str, row: str):
         data = Data("data for NB buys computer.xlsx - Sheet1.csv",3)
         param = Param(data, par)
         manager = Manager(param)
-    result = manager.main_for_server(col, row)
     if row.isdigit():
         row = int(row)
+    result = manager.main_for_server(col, row)
     json = manager.printing(result)
     return json
 
