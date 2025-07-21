@@ -1,6 +1,6 @@
 from manager import Manager
 from data import Data
-from param import Param
+from model import Model
 from fastapi import FastAPI
 import uvicorn
 import log_project
@@ -12,18 +12,18 @@ manager = None
 l = None
 
 
-def input_param():
-    check_param = input('The parameter you want to check: ')
-    return check_param
+def input_check_col():
+    check_col = input('The parameter you want to check: ')
+    return check_col
 
-@app.get('/{par}/{col}/{row}')
-async def root(par: str, col: str, row: str):
+@app.get('/{check_col}/{col}/{row}')
+async def root(check_col: str, col: str, row: str):
     global opened
     global manager
     if not opened:
         data = Data("data for NB buys computer.xlsx - Sheet1.csv",3)
-        param = Param(data, par)
-        manager = Manager(param)
+        model = Model(data, check_col)
+        manager = Manager(model)
     if row.isdigit():
         row = int(row)
     result = manager.main_for_server(col, row)
@@ -37,9 +37,9 @@ def Menu():
     if choice == '1':
         if not opened:
             data = Data("data for NB buys computer.xlsx - Sheet1.csv",3)
-            p = input_param()
-            param = Param(data, p)
-            manager = Manager(param)
+            check_col = input_check_col()
+            model = Model(data, check_col)
+            manager = Manager(model)
             opened = True
         l = manager.inputs()
         result = manager.main(l[0], l[1])

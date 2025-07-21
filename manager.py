@@ -1,8 +1,8 @@
 from stats import Stats
-import  log_project
+import log_project
 class Manager:
-    def __init__(self,param):
-        self.s = Stats(param)
+    def __init__(self,model):
+        self.s = Stats(model)
 
     def inputs(self):
         col = input('category: ')
@@ -23,7 +23,7 @@ class Manager:
             l = self.inputs()
             result2 = self.main(l[0], l[1])
             if result and result2:
-                for p in self.s.p.check_params_list:
+                for p in self.s.m.check_col_rows_list:
                     result[p] = result[p] * result2[p]
             elif result2:
                 result = result2
@@ -44,21 +44,21 @@ class Manager:
                 if result[i] > mx:
                     mx = result[i]
                     mx_key = i
-            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.s.p.check_param}' parameter are matching your settings.\nall options:"
-            for p in self.s.p.check_params_list:
+            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.s.m.check_col}' parameter are matching your settings.\nall options:"
+            for p in self.s.m.check_col_rows_list:
                 txt += f"\n{p}: {result[p]} %"
             print(txt)
             d = self.create_json_format(result,mx,mx_key)
-            log_project.log(f"'{self.s.p.check_param}' parameter: calculated successfully.\n")
+            log_project.log(f"'{self.s.m.check_col}' parameter: calculated successfully.\n")
             return d
         else:
             print('no valid parameter to check.')
-            log_project.log(f"'{self.s.p.check_param}' parameter: stats parameters are not in the table.\n")
+            log_project.log(f"'{self.s.m.check_col}' parameter: stats parameters are not in the table.\n")
 
     def create_json_format(self,result, mx, mx_key):
         d = dict()
         d['max'] = str(mx_key)
         d['max percentage'] = float(mx)
-        for p in self.s.p.check_params_list:
+        for p in self.s.m.check_col_rows_list:
             d[str(p)] = float(result[p])
         return d

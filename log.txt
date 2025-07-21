@@ -32,3 +32,6 @@
 'Buy_Computer' parameter: calculated successfully.
 'Buy_Computer' parameter: calculated successfully.
 'Buy_Computer' parameter: calculated successfully.
+invalid parameter entered.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: stats parameters are not in the table.
