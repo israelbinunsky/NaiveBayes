@@ -1,8 +1,8 @@
-from stats import Stats
+from validator import Validator
 import log_project
-class Manager:
-    def __init__(self,model):
-        self.s = Stats(model)
+class Classifier:
+    def __init__(self,trainer):
+        self.v = Validator(trainer)
 
     def inputs(self):
         col = input('category: ')
@@ -14,23 +14,23 @@ class Manager:
         l.append(row)
         return l
 
-    def main(self,col, row):
-        result = self.s.calculation(col,row)
+    def main_inputs(self,col, row):
+        result = self.v.check_validator(col,row)
         if not result:
             print("not exist.")
         more = input('more details? ')
         if more == 'yes':
             l = self.inputs()
-            result2 = self.main(l[0], l[1])
+            result2 = self.main_inputs(l[0], l[1])
             if result and result2:
-                for p in self.s.m.check_col_rows_list:
+                for p in self.v.t.check_col_rows_list:
                     result[p] = result[p] * result2[p]
             elif result2:
                 result = result2
         return result
 
-    def main_for_server(self,col, row):
-        result = self.s.calculation(col,row)
+    def main(self,col, row):
+        result = self.v.check_validator(col,row)
         if not result:
             print("not exist.")
         return result
@@ -44,21 +44,21 @@ class Manager:
                 if result[i] > mx:
                     mx = result[i]
                     mx_key = i
-            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.s.m.check_col}' parameter are matching your settings.\nall options:"
-            for p in self.s.m.check_col_rows_list:
+            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.v.t.check_col}' parameter are matching your settings.\nall options:"
+            for p in self.v.t.check_col_rows_list:
                 txt += f"\n{p}: {result[p]} %"
             print(txt)
             d = self.create_json_format(result,mx,mx_key)
-            log_project.log(f"'{self.s.m.check_col}' parameter: calculated successfully.\n")
+            log_project.log(f"'{self.v.t.check_col}' parameter: calculated successfully.\n")
             return d
         else:
             print('no valid parameter to check.')
-            log_project.log(f"'{self.s.m.check_col}' parameter: stats parameters are not in the table.\n")
+            log_project.log(f"'{self.v.t.check_col}' parameter: stats parameters are not in the table.\n")
 
     def create_json_format(self,result, mx, mx_key):
         d = dict()
         d['max'] = str(mx_key)
         d['max percentage'] = float(mx)
-        for p in self.s.m.check_col_rows_list:
+        for p in self.v.t.check_col_rows_list:
             d[str(p)] = float(result[p])
         return d

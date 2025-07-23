@@ -35,3 +35,26 @@
 invalid parameter entered.
 'Buy_Computer' parameter: calculated successfully.
 'Buy_Computer' parameter: stats parameters are not in the table.
+'Buy_Computer' parameter: stats parameters are not in the table.
+invalid parameter entered.
+'Buy_Computer' parameter: stats parameters are not in the table.
+'Buy_Computer' parameter: stats parameters are not in the table.
+'Buy_Computer' parameter: stats parameters are not in the table.
+'Buy_Computer' parameter: stats parameters are not in the table.
+'Buy_Computer' parameter: stats parameters are not in the table.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+invalid parameter entered.
+invalid parameter entered.
+'class' parameter: calculated successfully.
