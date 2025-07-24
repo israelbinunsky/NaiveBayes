@@ -4,7 +4,6 @@ from trainer import Trainer
 from fastapi import FastAPI
 import uvicorn
 
-
 app = FastAPI()
 opened = False
 classifier = None
@@ -13,7 +12,7 @@ l = None
 @app.get('/{check_col}/{cols}/{rows}')
 async def root(check_col: str, cols: str, rows: str):
     global classifier
-    loader = Loader("data for NB buys computer.csv")
+    loader = Loader("phishing.csv")
     print(loader.table.head(10))
     trainer = Trainer(loader.table, check_col)
     classifier = Classifier(trainer)

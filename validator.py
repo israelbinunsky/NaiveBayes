@@ -70,8 +70,8 @@ class Validator:
     #         final_dict_results[i] = dict_results[i] / self.m.nums[i]
     #     return final_dict_results
 
-loader = loader.Loader("phishing.csv")
-trainer = trainer.Trainer(loader.table, 'class')
-v = Validator(trainer)
-v.test()
+# loader = loader.Loader("phishing.csv")
+# trainer = trainer.Trainer(loader.table, 'class')
+# v = Validator(trainer)
+# v.test()
 

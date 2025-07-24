@@ -3,15 +3,6 @@ class Loader:
     def __init__(self,path, skip_rows =0):
         table = pd.read_csv(path, skiprows=skip_rows)
 
-        # מנקה רווחים מיותרים
-        table.columns = table.columns.str.strip()
-
-        # מוחק עמודות מיותרות שנקראות 'Unnamed'
-        table = table.loc[:, ~table.columns.str.contains('^Unnamed')]
-
-        # מוחק שורות ריקות לחלוטין
-        table.dropna(how='all', inplace=True)
-
         # table = table.sample(frac=1).reset_index(drop=True)
         self.table = table
         cms = self.table.columns.tolist()

@@ -58,3 +58,4 @@ invalid parameter entered.
 invalid parameter entered.
 invalid parameter entered.
 'class' parameter: calculated successfully.
+'InfoEmail' parameter: calculated successfully.

@@ -1,5 +1,6 @@
 from classifier import Classifier
 from loader import Loader
+from cleaner import Cleaner
 from trainer import Trainer
 from fastapi import FastAPI
 import uvicorn
@@ -24,7 +25,8 @@ async def root(check_col: str, col: str, row: str):
     global classifier1
     if not opened:
         loader = Loader("phishing.csv")
-        model = Trainer(loader.table, check_col)
+        cleaner = Cleaner(loader.table)
+        model = Trainer(cleaner.df, check_col)
         classifier1 = Classifier(model)
     if row.isdigit():
         row = int(row)
@@ -40,10 +42,11 @@ def Menu():
         if not opened:
             loader = Loader("phishing.csv")
             # print(loader.table["Buy_Computer"].unique())
-            print(loader.table.head(10))
+            cleaner = Cleaner(loader.table)
+            print(cleaner.df.head(10))
 
             check_col = input_check_col()
-            trainer = Trainer(loader.table, check_col)
+            trainer = Trainer(cleaner.df, check_col)
             # pprint.pprint(trainer.dicts)
             classifier1 = Classifier(trainer)
             opened = True
