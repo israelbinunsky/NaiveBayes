@@ -1,8 +1,8 @@
 from validator import Validator
 import log_project
 class Classifier:
-    def __init__(self,trainer):
-        self.v = Validator(trainer)
+    def __init__(self,trainer_json):
+        self.v = Validator(trainer_json)
 
     def inputs(self):
         col = input('category: ')
@@ -23,7 +23,7 @@ class Classifier:
             l = self.inputs()
             result2 = self.main_inputs(l[0], l[1])
             if result and result2:
-                for p in self.v.t.check_col_rows_list:
+                for p in self.v.check_col_rows_list:
                     result[p] = result[p] * result2[p]
             elif result2:
                 result = result2
@@ -44,21 +44,21 @@ class Classifier:
                 if result[i] > mx:
                     mx = result[i]
                     mx_key = i
-            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.v.t.check_col}' parameter are matching your settings.\nall options:"
-            for p in self.v.t.check_col_rows_list:
+            txt = f"The highest percentage is: '{mx_key}'\n{mx} % of all '{mx_key}' in '{self.v.check_col}' parameter are matching your settings.\nall options:"
+            for p in self.v.check_col_rows_list:
                 txt += f"\n{p}: {result[p]} %"
             print(txt)
             d = self.create_json_format(result,mx,mx_key)
-            log_project.log(f"'{self.v.t.check_col}' parameter: calculated successfully.\n")
+            log_project.log(f"'{self.v.check_col}' parameter: calculated successfully.\n")
             return d
         else:
             print('no valid parameter to check.')
-            log_project.log(f"'{self.v.t.check_col}' parameter: stats parameters are not in the table.\n")
+            log_project.log(f"'{self.v.check_col}' parameter: stats parameters are not in the table.\n")
 
     def create_json_format(self,result, mx, mx_key):
         d = dict()
         d['max'] = str(mx_key)
         d['max percentage'] = float(mx)
-        for p in self.v.t.check_col_rows_list:
+        for p in self.v.check_col_rows_list:
             d[str(p)] = float(result[p])
         return d

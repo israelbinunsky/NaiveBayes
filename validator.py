@@ -3,24 +3,30 @@ import  loader
 import trainer
 import log_project
 class Validator:
-    def __init__(self, trainer):
-        self.t = trainer
+    def __init__(self, trainer_json):
+        # self.df = trainer_json['df']
+        # self.test_df = trainer_json['test_df']
+        self.check_col = trainer_json['check_col']
+        self.check_col_rows_list = trainer_json['check_col_rows_list']
+        self.nums = trainer_json['nums']
+        self.cms = trainer_json['cms']
+        self.dicts = trainer_json['dicts']
 
     def check_validator(self,col,row, training=True):
         result = dict()
         is_exist = False
-        if col not in self.t.df.columns:
-            log_project.log(f"'{self.t.check_col}' parameter: column not in the table.\n")
+        if col not in self.cms:
+            log_project.log(f"'{self.check_col}' parameter: column not in the table.\n")
             raise Exception('column not exist')
-        for p in self.t.check_col_rows_list:
-            if col in self.t.dicts[p] and row in self.t.dicts[p][col]:
-                num = self.t.dicts[p][col][row]
+        for p in self.check_col_rows_list:
+            if col in self.dicts[p] and row in self.dicts[p][col]:
+                num = self.dicts[p][col][row]
                 result[p] = num
                 is_exist = True
             else:
                 if training:
-                    self.add_one_to_all(self.t.dicts[p])
-                    self.t.nums[p] += 1
+                    self.add_one_to_all(self.dicts[p])
+                    self.nums[p] += 1
                 result[p] = 1
         if not is_exist:
             return None
@@ -31,12 +37,12 @@ class Validator:
             for row in dict[col]:
                 dict[col][row] += 1
 
-    def test(self):
+    def test(self, test_df):
         final_lst = list()
-        for index, row in self.t.test_df.iterrows():
+        for index, row in test_df.iterrows():
             row_dict_result = dict()
-            for col in self.t.test_df.columns:
-                if col != 'id' and col != self.t.check_col:
+            for col in test_df.columns:
+                if col != 'id' and col != self.check_col:
                     dict_result = self.check_validator(col, row[col],training=False)
                     if dict_result is None:
                         continue
@@ -51,7 +57,7 @@ class Validator:
                 if row_dict_result[k] > mx:
                     mx = row_dict_result[k]
                     mx_key = k
-            if mx_key == row[self.t.check_col]:
+            if mx_key == row[self.check_col]:
                 final_lst.append(True)
             else:
                 final_lst.append(False)

@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  main_1:
+    build:
+      context: .
+      dockerfile: Dockerfile1
+    container_name: main_1
+    ports:
+      - "8001:8000"
+    volumes:
+    - shared_data:/shared  
+
+  main_2:
+    build:
+      context: .
+      dockerfile: Dockerfile2
+    container_name: main_2
+    ports:
+      - "8002:8000"
+    depends_on:
+      - main_1
+    volumes:
+    - shared_data:/shared 
+volumes:
+  shared_data:  

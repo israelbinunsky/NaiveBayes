@@ -59,3 +59,9 @@ invalid parameter entered.
 invalid parameter entered.
 'class' parameter: calculated successfully.
 'InfoEmail' parameter: calculated successfully.
+'HTTPS' parameter: calculated successfully.
+'HTTPS' parameter: calculated successfully.
+'AnchorURL' parameter: calculated successfully.
+'StatsReport' parameter: calculated successfully.
+invalid parameter entered.
+'HTTPS' parameter: calculated successfully.

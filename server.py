@@ -1,5 +1,6 @@
 from classifier import Classifier
 from loader import Loader
+from  cleaner import Cleaner
 from trainer import Trainer
 from fastapi import FastAPI
 import uvicorn
@@ -9,13 +10,7 @@ opened = False
 classifier = None
 l = None
 
-@app.get('/{check_col}/{cols}/{rows}')
-async def root(check_col: str, cols: str, rows: str):
-    global classifier
-    loader = Loader("phishing.csv")
-    print(loader.table.head(10))
-    trainer = Trainer(loader.table, check_col)
-    classifier = Classifier(trainer)
+def split_params(cols, rows):
     cols_lst = cols.split('.')
     rows_lst = rows.split('.')
     final_result = 0
@@ -28,6 +23,19 @@ async def root(check_col: str, cols: str, rows: str):
                 final_result[k] *= result[k]
         else:
             final_result = result
+    return final_result
+
+
+@app.get('/{check_col}/{cols}/{rows}')
+async def root(check_col: str, cols: str, rows: str):
+    global classifier
+    loader = Loader("phishing.csv")
+    cleaner = Cleaner(loader.table)
+    print(cleaner.df.head(10))
+    trainer = Trainer(cleaner.df, check_col)
+    trainer_json = trainer.get_json()
+    classifier = Classifier(trainer_json)
+    final_result = split_params(cols, rows)
     json = classifier.printing(final_result)
     return json
 

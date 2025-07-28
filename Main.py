@@ -26,8 +26,9 @@ async def root(check_col: str, col: str, row: str):
     if not opened:
         loader = Loader("phishing.csv")
         cleaner = Cleaner(loader.table)
-        model = Trainer(cleaner.df, check_col)
-        classifier1 = Classifier(model)
+        trainer = Trainer(cleaner.df, check_col)
+        trainer_json = trainer.get_json()
+        classifier1 = Classifier(trainer_json)
     if row.isdigit():
         row = int(row)
     result = classifier1.main(col, row)
@@ -48,7 +49,8 @@ def Menu():
             check_col = input_check_col()
             trainer = Trainer(cleaner.df, check_col)
             # pprint.pprint(trainer.dicts)
-            classifier1 = Classifier(trainer)
+            trainer_json = trainer.get_json()
+            classifier1 = Classifier(trainer_json)
             opened = True
         l = classifier1.inputs()
         result = classifier1.main_inputs(l[0], l[1])
@@ -63,7 +65,7 @@ def Menu():
         if classifier1:
             classifier1.v.test()
         else:
-            print('not name of column to check. please make 1 step before.')
+            print('not name of column to check. please make 1th step before.')
             Menu()
 
 
