@@ -2,10 +2,10 @@ from classifier import Classifier
 from loader import Loader
 from cleaner import Cleaner
 from trainer import Trainer
+from validator import Validator
 from fastapi import FastAPI
 import uvicorn
 import log_project
-import pprint
 
 
 
@@ -28,7 +28,8 @@ async def root(check_col: str, col: str, row: str):
         cleaner = Cleaner(loader.table)
         trainer = Trainer(cleaner.df, check_col)
         trainer_json = trainer.get_json()
-        classifier1 = Classifier(trainer_json)
+        validator = Validator(trainer_json)
+        classifier1 = Classifier(validator)
     if row.isdigit():
         row = int(row)
     result = classifier1.main(col, row)
@@ -41,16 +42,16 @@ def Menu():
     global classifier1
     if choice == '1':
         if not opened:
-            loader = Loader("phishing.csv")
+            loader = Loader("data for NB buys computer.csv")
             # print(loader.table["Buy_Computer"].unique())
             cleaner = Cleaner(loader.table)
             print(cleaner.df.head(10))
 
             check_col = input_check_col()
             trainer = Trainer(cleaner.df, check_col)
-            # pprint.pprint(trainer.dicts)
             trainer_json = trainer.get_json()
-            classifier1 = Classifier(trainer_json)
+            validator = Validator(trainer_json)
+            classifier1 = Classifier(validator)
             opened = True
         l = classifier1.inputs()
         result = classifier1.main_inputs(l[0], l[1])

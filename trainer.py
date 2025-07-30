@@ -35,9 +35,9 @@ class Trainer:
             raise Exception("invalid parameter.")
 
     def get_json(self):
-        json_r = {'df':  self.df.to_json(orient='records'),
-                'test_df':  self.test_df.to_json(orient='records'),
-                'check_col': str(self.check_col),
+        json_r = {'check_col': str(self.check_col),
+                # 'df':  self.df.to_json(orient='records'),
+                # 'test_df':  self.test_df.to_json(orient='records'),
                 'check_col_rows_list': self.check_col_rows_list,
                 'nums': self.nums,
                 'cms': list(self.cms),

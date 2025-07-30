@@ -1,4 +1,5 @@
 from classifier import Classifier
+from validator import Validator
 from fastapi import FastAPI
 import uvicorn
 import httpx
@@ -27,15 +28,14 @@ def split_params(cols, rows):
             final_result = result
     return final_result
 
-
-def wait_for_file(filepath, timeout=10):
-    start = time.time()
-    while not os.path.exists(filepath):
-        if time.time() - start > timeout:
-            raise FileNotFoundError(f"{filepath} not found after {timeout} seconds")
-        time.sleep(0.5)
-    with open(filepath, "r") as f:
-        return json.load(f)
+# def wait_for_file(filepath, timeout=10):
+#     start = time.time()
+#     while not os.path.exists(filepath):
+#         if time.time() - start > timeout:
+#             raise FileNotFoundError(f"{filepath} not found after {timeout} seconds")
+#         time.sleep(0.5)
+#     with open(filepath, "r") as f:
+#         return json.load(f)
 
 @app.get('/{cols}/{rows}')
 async def root(cols: str, rows: str):
@@ -48,7 +48,8 @@ async def root(cols: str, rows: str):
     else:
         print(response.status_code)
 
-    classifier = Classifier(json_trainer)
+    validator = Validator(json_trainer)
+    classifier = Classifier(validator)
     final_result = split_params(cols, rows)
     result = classifier.printing(final_result)
     return result

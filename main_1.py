@@ -15,6 +15,7 @@ async def root():
     cleaner = Cleaner(loader.table)
     trainer = Trainer(cleaner.df, "Buy_Computer")
     response_json = trainer.get_json()
+
     # with open("/shared/trained_model.json", "w") as f:
     #     json.dump(trainer.get_json(), f)
     #     f.close()

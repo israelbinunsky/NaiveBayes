@@ -65,3 +65,5 @@ invalid parameter entered.
 'StatsReport' parameter: calculated successfully.
 invalid parameter entered.
 'HTTPS' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.
+'Buy_Computer' parameter: calculated successfully.

@@ -2,6 +2,7 @@ from classifier import Classifier
 from loader import Loader
 from  cleaner import Cleaner
 from trainer import Trainer
+from validator import Validator
 from fastapi import FastAPI
 import uvicorn
 
@@ -29,12 +30,13 @@ def split_params(cols, rows):
 @app.get('/{check_col}/{cols}/{rows}')
 async def root(check_col: str, cols: str, rows: str):
     global classifier
-    loader = Loader("phishing.csv")
+    loader = Loader("data for NB buys computer.csv")
     cleaner = Cleaner(loader.table)
     print(cleaner.df.head(10))
     trainer = Trainer(cleaner.df, check_col)
     trainer_json = trainer.get_json()
-    classifier = Classifier(trainer_json)
+    validator = Validator(trainer_json)
+    classifier = Classifier(validator)
     final_result = split_params(cols, rows)
     json = classifier.printing(final_result)
     return json

@@ -1,8 +1,8 @@
 from validator import Validator
 import log_project
 class Classifier:
-    def __init__(self,trainer_json):
-        self.v = Validator(trainer_json)
+    def __init__(self,validator):
+        self.v = validator
 
     def inputs(self):
         col = input('category: ')
